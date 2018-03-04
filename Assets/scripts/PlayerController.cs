@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour {
 	private int collected = 0;
 	private int total	  = 0;
 
+//	public Rigidbody rigidbody;
+
+	public Rigidbody rb;
+
 	public GUIText countText;
 	public GUIText winText;
 
@@ -22,6 +26,8 @@ public class PlayerController : MonoBehaviour {
 
 		GameObject[] pickups = GameObject.FindGameObjectsWithTag (PICKUP_TAG);
 		total = pickups.Length;
+
+		rb = GetComponent<Rigidbody> ();
 	}
 
 	void FixedUpdate() {
@@ -30,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 
 		Vector3 movement = new Vector3 (horizontal, 0.0f, vertical);
 
-		rigidbody.AddForce (movement * speed * Time.deltaTime);
+		rb.AddForce (movement * speed * Time.deltaTime);
 	}
 
 	void OnTriggerEnter(Collider other) {
